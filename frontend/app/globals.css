@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-pixel-title {
+    font-family: var(--font-pixel-header), monospace;
+  }
+  
+  .font-pixel {
+    font-family: var(--font-pixel-body), monospace;
+  }
+}
+
+:root {
+  --background: #030712;
+  --foreground: #f8fafc;
+}
+
+body {
+  background-color: #030712;
+  color: #f8fafc;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism + Pixel Art Hybrid Styling */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    6px 6px 0px rgba(0, 0, 0, 0.7),
+    inset 2px 2px 0px rgba(255, 255, 255, 0.1);
+}
+
+.glass-panel-interactive {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-interactive:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 
+    8px 8px 0px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(56, 189, 248, 0.25),
+    inset 2px 2px 0px rgba(255, 255, 255, 0.2);
+}
+
+.pixel-input {
+  background: rgba(2, 6, 23, 0.75);
+  border: 3px solid rgba(148, 163, 184, 0.3);
+  box-shadow: inset 3px 3px 0px rgba(0, 0, 0, 0.8);
+  color: #38bdf8;
+  font-family: var(--font-pixel-header), monospace;
+  letter-spacing: 0.1em;
+  transition: all 0.15s ease;
+}
+
+.pixel-input:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 
+    inset 3px 3px 0px rgba(0, 0, 0, 0.9),
+    0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.pixel-button {
+  font-family: var(--font-pixel-header), monospace;
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  border: 3px solid #60a5fa;
+  box-shadow: 
+    4px 4px 0px #030712,
+    inset 2px 2px 0px rgba(255, 255, 255, 0.4);
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+  transition: all 0.1s ease;
+}
+
+.pixel-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%);
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    6px 6px 0px #030712,
+    0 0 15px rgba(56, 189, 248, 0.5),
+    inset 2px 2px 0px rgba(255, 255, 255, 0.5);
+}
+
+.pixel-button:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 
+    2px 2px 0px #030712,
+    inset 2px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+.pixel-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(80%);
+}
+
+.pixel-tag {
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
+}
+
+/* Subtle CRT retro scanline overlay */
+.scanline-bg {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+}
