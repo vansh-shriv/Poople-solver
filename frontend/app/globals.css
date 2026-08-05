@@ -4,7 +4,7 @@
   .font-pixel-title {
     font-family: var(--font-pixel-header), monospace;
   }
-  
+
   .font-pixel {
     font-family: var(--font-pixel-body), monospace;
   }
@@ -27,7 +27,7 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 3px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
+  box-shadow:
     6px 6px 0px rgba(0, 0, 0, 0.7),
     inset 2px 2px 0px rgba(255, 255, 255, 0.1);
 }
@@ -38,7 +38,7 @@ body {
 
 .glass-panel-interactive:hover {
   border-color: rgba(56, 189, 248, 0.5);
-  box-shadow: 
+  box-shadow:
     8px 8px 0px rgba(0, 0, 0, 0.8),
     0 0 20px rgba(56, 189, 248, 0.25),
     inset 2px 2px 0px rgba(255, 255, 255, 0.2);
@@ -57,7 +57,7 @@ body {
 .pixel-input:focus {
   outline: none;
   border-color: #38bdf8;
-  box-shadow: 
+  box-shadow:
     inset 3px 3px 0px rgba(0, 0, 0, 0.9),
     0 0 12px rgba(56, 189, 248, 0.4);
 }
@@ -66,7 +66,7 @@ body {
   font-family: var(--font-pixel-header), monospace;
   background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
   border: 3px solid #60a5fa;
-  box-shadow: 
+  box-shadow:
     4px 4px 0px #030712,
     inset 2px 2px 0px rgba(255, 255, 255, 0.4);
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
@@ -76,7 +76,7 @@ body {
 .pixel-button:hover:not(:disabled) {
   background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%);
   transform: translate(-2px, -2px);
-  box-shadow: 
+  box-shadow:
     6px 6px 0px #030712,
     0 0 15px rgba(56, 189, 248, 0.5),
     inset 2px 2px 0px rgba(255, 255, 255, 0.5);
@@ -84,7 +84,7 @@ body {
 
 .pixel-button:active:not(:disabled) {
   transform: translate(2px, 2px);
-  box-shadow: 
+  box-shadow:
     2px 2px 0px #030712,
     inset 2px 2px 0px rgba(0, 0, 0, 0.4);
 }
@@ -103,14 +103,10 @@ body {
 
 /* Subtle CRT retro scanline overlay */
 .scanline-bg {
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.25) 50%
-  ), linear-gradient(
-    90deg,
-    rgba(255, 0, 0, 0.03),
-    rgba(0, 255, 0, 0.01),
-    rgba(0, 0, 255, 0.03)
-  );
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg,
+      rgba(255, 0, 0, 0.03),
+      rgba(0, 255, 0, 0.01),
+      rgba(0, 0, 255, 0.03));
   background-size: 100% 3px, 6px 100%;
 }

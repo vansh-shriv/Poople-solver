@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import { exec } from 'child_process';
-import path from 'path';
 
 export async function POST(request: Request): Promise<NextResponse> {
   try {
@@ -16,7 +14,6 @@ export async function POST(request: Request): Promise<NextResponse> {
     const cleanStart = String(start).trim().toLowerCase();
     const cleanTarget = String(target).trim().toLowerCase();
 
-    // Validate length (standard word length in dictionary is 4)
     if (cleanStart.length !== 4 || cleanTarget.length !== 4) {
       return NextResponse.json(
         { success: false, error: 'Words must be exactly 4 letters long.' },
@@ -24,42 +21,46 @@ export async function POST(request: Request): Promise<NextResponse> {
       );
     }
 
-    // Path to solver.py script located in root directory (one level up from frontend)
-    const scriptPath = path.resolve(process.cwd(), '../solver.py');
+    // Configurable Backend URL for local and production deployment (e.g. Render)
+    const backendUrl =
+      process.env.BACKEND_URL ||
+      process.env.NEXT_PUBLIC_BACKEND_URL ||
+      'http://127.0.0.1:8000';
 
-    return new Promise<NextResponse>((resolve) => {
-      // Escape inputs for safe execution
-      const command = `python "${scriptPath}" "${cleanStart}" "${cleanTarget}"`;
-
-      exec(command, { cwd: path.resolve(process.cwd(), '..') }, (error, stdout, stderr) => {
-        if (error && !stdout) {
-          console.error('Execution error:', error, stderr);
-          return resolve(
-            NextResponse.json(
-              { success: false, error: 'Failed to execute solver script.' },
-              { status: 500 }
-            )
-          );
-        }
-
-        try {
-          const result = JSON.parse(stdout.trim());
-          return resolve(NextResponse.json(result));
-        } catch (parseError) {
-          console.error('JSON Parse error:', parseError, stdout);
-          return resolve(
-            NextResponse.json(
-              { success: false, error: 'Invalid response from solver.' },
-              { status: 500 }
-            )
-          );
-        }
-      });
+    const response = await fetch(`${backendUrl}/solve`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        start: cleanStart,
+        target: cleanTarget,
+      }),
+      cache: 'no-store',
     });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      return NextResponse.json(
+        {
+          success: false,
+          error: errorData.detail || errorData.error || 'FastAPI server error.',
+        },
+        { status: response.status }
+      );
+    }
+
+    const data = await response.json();
+    return NextResponse.json(data);
   } catch (err: any) {
+    console.error('API proxy error:', err);
     return NextResponse.json(
-      { success: false, error: err.message || 'Server error' },
-      { status: 500 }
+      {
+        success: false,
+        error:
+          'Could not reach FastAPI backend server. Ensure backend is running.',
+      },
+      { status: 503 }
     );
   }
 }
