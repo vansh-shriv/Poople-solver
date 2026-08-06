@@ -40,11 +40,12 @@ print(len(words))
 word_set = set(words)
 for word in words:
     for i in range(len(word)):
-        for c in "abcdefghijklmnopqrstuvwxyz":
+        for c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
             if c != word[i]:
                 new_word = word[:i] + c + word[i+1:]
                 if new_word in word_set:
-                    G.add_edge(word, new_word)
+                    G.add_edge(word,new_word)
+                    print(word+"-"+new_word)
 
 with open("graph.pkl","wb") as f:
     pickle.dump(G,f)
