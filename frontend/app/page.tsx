@@ -30,8 +30,8 @@ const PRESETS = [
 ];
 
 export default function Home() {
-  const [startWord, setStartWord] = useState<string>('poop');
-  const [targetWord, setTargetWord] = useState<string>('loop');
+  const [startWord, setStartWord] = useState<string>('');
+  const [targetWord, setTargetWord] = useState<string>('poop');
   const [loading, setLoading] = useState<boolean>(false);
   const [result, setResult] = useState<SolveResponse | null>(null);
   const [copied, setCopied] = useState<boolean>(false);
