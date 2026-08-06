@@ -35,12 +35,13 @@ def connect(word1,word2):
 
 with open("word-list/valid_poop.txt","r") as f:
     words = [line.strip() for line in f]
+    words = [word.lower() for word in words]
 print(len(words))
 
 word_set = set(words)
 for word in words:
     for i in range(len(word)):
-        for c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+        for c in "abcdefghijklmnopqrstuvwxyz":
             if c != word[i]:
                 new_word = word[:i] + c + word[i+1:]
                 if new_word in word_set:
