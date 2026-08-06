@@ -33,7 +33,7 @@ def connect(word1,word2):
 
 # now we can connect the word and store in graph 
 
-with open("word-list/valid_word_list.txt","r") as f:
+with open("word-list/valid_poop.txt","r") as f:
     words = [line.strip() for line in f]
 print(len(words))
 

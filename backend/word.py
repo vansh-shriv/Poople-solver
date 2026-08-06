@@ -21,6 +21,25 @@ with open("word-list/valid_word_list.txt","w") as f:
 print(f"Found {len(valid_word_list)} four-letter words.")
 
 
+# 4letter poople word list
+unique_words = set()
+
+with open("word-list/poop.txt","r") as f:
+    for line in f:
+        line = line.strip()
+        if not line:
+            continue
+    
+        word = line.split(",")[0].strip()
+        unique_words.add(word)
+
+    
+with open("word-list/valid_poop.txt","w") as f:
+    for word in sorted(unique_words):
+        f.write(word+"\n")
+
+print(f"Found {len(unique_words)} unique words.")
+
 
 # what we can do is to connect word if they have 1 letter difference 
 # Then draw a grpah 
